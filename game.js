@@ -180,8 +180,8 @@ function banner(d) { const b = $('banner'); if (Date.now() < CLOSE_AT) { b.hidde
   b.innerHTML = d && d.winner ? `🏆 <b>¡Cerró el concurso!</b> La remera de SLA es para <b>${esc(d.winner.name)}</b> (@${esc(d.winner.handle)}) con <b>${d.winner.score}</b> choris. Podés seguir jugando por diversión.`
     : '🏆 <b>¡Cerró el concurso!</b> Podés seguir jugando por diversión, pero ya no suma.'; }
 function tick() { const ms = CLOSE_AT - Date.now(), c = $('count');
-  if (ms <= 0) { c.innerHTML = 'CERRADO<small>GANADOR EN EL RANKING</small>'; banner(lastBoard); return; }
+  if (ms <= 0) { if (c) c.innerHTML = 'CERRADO<small>GANADOR EN EL RANKING</small>'; banner(lastBoard); return; }
   const h = Math.floor(ms / 36e5), m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60, p = n => String(n).padStart(2, '0');
-  c.innerHTML = `${h ? p(h) + ':' : ''}${p(m)}:${p(s)}<small>PARA QUE CIERRE EL CONCURSO</small>`; }
+  if (c) c.innerHTML = `${h ? p(h) + ':' : ''}${p(m)}:${p(s)}<small>PARA QUE CIERRE EL CONCURSO</small>`; }
 tick(); setInterval(tick, 1000); loadBoard(); setInterval(() => document.hidden || loadBoard(), 8000);
 })();
