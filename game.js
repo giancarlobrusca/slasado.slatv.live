@@ -143,8 +143,8 @@ function result(r) {
     <p>${r.score === 1 ? 'chori apilado' : 'choris apilados'}</p>
     ${r.ok && r.rank ? `<p>Vas <b>#${r.rank}</b> en el ranking · tu mejor: <b>${r.best}</b></p>` : ''}
     ${!r.ok && !r.practice ? `<p class="err">${esc(r.error || 'No se pudo guardar')}</p>` : ''}
-    ${!closed && left > 0 ? `<button class="btn primary big" id="again">Jugar de nuevo · quedan ${left}</button>` : ''}
-    ${!closed && left <= 0 && !r.practice ? `<p class="small">Usaste tus 3 intentos. ¡Suerte en el ranking!</p>` : ''}
+    ${!closed && left > 0 ? `<button class="btn primary again" id="again">Jugar de nuevo · quedan ${left}</button>` : ''}
+    ${!closed && left <= 0 && !r.practice ? `<p class="small">Usaste tus 2 intentos. ¡Suerte en el ranking!</p>` : ''}
     <button class="link" id="prac">Practicar sin sumar</button>
     <button class="link" id="other">Jugar con otro usuario</button></div>`);
   $('again') && ($('again').onclick = begin); $('prac').onclick = () => { audio(); play(null, true, {}); }; $('other').onclick = () => { showPanel(regHTML); bindReg(); };
@@ -161,7 +161,7 @@ async function begin() { audio();
   me.left = r.left; save(); play(r.token, false, r);
 }
 function bindReg() { const f = $('reg'); if (!f) return; if (me.name) $('name').value = me.name; if (me.handle) $('handle').value = me.handle;
-  if (me.left != null && me.handle) $('left').textContent = me.left > 0 ? `@${me.handle}: te quedan ${me.left} intento${me.left > 1 ? 's' : ''}` : `@${me.handle} ya usó sus 3 intentos`;
+  if (me.left != null && me.handle) $('left').textContent = me.left > 0 ? `@${me.handle}: te quedan ${me.left} intento${me.left > 1 ? 's' : ''}` : `@${me.handle} ya usó sus 2 intentos`;
   f.onsubmit = e => { e.preventDefault(); begin(); }; $('practice').onclick = () => { audio(); play(null, true, {}); }; }
 bindReg();
 

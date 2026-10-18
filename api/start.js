@@ -7,6 +7,6 @@ module.exports = async (req, res) => {
   const now = Date.now();
   if (now >= C.CLOSE_AT) return C.json(res, 200, { ok: true, practice: true, closed: true, left: 0 });
   const n = await C.startAttempt(h, name);
-  if (!n) return C.json(res, 403, { error: 'Ya usaste tus 3 intentos con @' + h, left: 0 });
+  if (!n) return C.json(res, 403, { error: 'Ya usaste tus ' + C.MAX_ATTEMPTS + ' intentos con @' + h, left: 0 });
   C.json(res, 200, { ok: true, token: C.sign({ h, n, name, t0: now }), attempt: n, left: C.MAX_ATTEMPTS - n, handle: h });
 };
