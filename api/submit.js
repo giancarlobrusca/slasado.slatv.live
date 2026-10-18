@@ -9,6 +9,8 @@ module.exports = async (req, res) => {
   const secs = (now - t.t0) / 1000;
   if (secs > 30 * 60) return C.json(res, 400, { error: 'Sesión vencida' });
   if (score > Math.floor(secs / C.MIN_DROP_S) + 1) return C.json(res, 400, { error: 'Ese puntaje es demasiado rápido 🤨' });
+  try { await C.put(`d/${t.h}/${t.n}.json`, '{}', C.opts); }
+  catch (e) { if (/exist/i.test(e.message)) return C.json(res, 409, { error: 'Ese intento ya se registró' }); throw e; }
   try { await C.put(`s/${t.h}/${t.n}-${score}-${now}-${C.b64(t.name)}.json`, JSON.stringify({ score, secs, ua: String(req.headers['user-agent'] || '').slice(0, 120) }), C.opts); }
   catch (e) { if (/exist/i.test(e.message)) return C.json(res, 409, { error: 'Ese intento ya se registró' }); throw e; }
   const { ranked } = await C.board(); const rank = ranked.findIndex(r => r.handle === t.h) + 1;
