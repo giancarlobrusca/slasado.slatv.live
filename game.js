@@ -115,7 +115,6 @@ function draw(t) {
   if (G.combo >= 2 && G.state === 'play') { cx.font = `600 ${14 * S}px "Geist Mono",monospace`; cx.textAlign = 'center'; cx.fillStyle = '#39f688'; cx.fillText(`COMBO x${G.combo} 🔥`, W / 2, 96 * S); }
 }
 reset(); requestAnimationFrame(frame);
-if (new URLSearchParams(location.search).has('debug')) window.__G = G;
 
 // ---------- entry / API ----------
 const me = JSON.parse(localStorage.getItem('slasado.me') || '{}');
