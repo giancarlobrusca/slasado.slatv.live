@@ -2,7 +2,7 @@
 @font-face{font-family:"Geist Mono";src:url(fonts/GeistMono-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
 :root{--acid:#39f688;--bg:#020c08;--fg:#eafff3;--ember:#ff7a1a;--ember2:#ffb547;--line:rgba(234,255,243,.1);--line2:rgba(234,255,243,.18);--card:rgba(10,22,16,.72)}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;touch-action:manipulation}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 .mono{font-family:"Geist Mono",ui-monospace,monospace}
 a{color:inherit}
@@ -40,7 +40,7 @@ h2{margin:0;font-size:22px;letter-spacing:-.03em}
 .ghead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
 .ghead span{font-size:11px;letter-spacing:.1em;color:rgba(234,255,243,.5)}
 .game{padding:14px}
-.stage{position:relative;height:min(68svh,560px);border-radius:16px;overflow:hidden;border:1px solid var(--line2);touch-action:manipulation;user-select:none;-webkit-user-select:none;background:#04110b}
+.stage{position:relative;height:min(68svh,560px);border-radius:16px;overflow:hidden;border:1px solid var(--line2);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;background:#04110b}
 #cv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .score{position:absolute;top:12px;left:0;right:0;text-align:center;font-size:54px;font-weight:600;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.6);pointer-events:none}
 .overlay{position:absolute;inset:0;display:grid;place-items:center;padding:14px;background:rgba(2,12,8,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}

@@ -58,6 +58,8 @@ function over() { G.state = 'over'; sfx.fail(); buzz([60, 40, 160]); G.shake = 1
 function burst(x, y, w, col, n) { for (let i = 0; i < n; i++) G.parts.push({ x: x + (Math.random() - .5) * w, y: y + LH() * .6, vx: (Math.random() - .5) * 260 * S, vy: (Math.random() * 260 + 80) * S, l: 1, col, s: (2 + Math.random() * 3) * S }); }
 
 stage.addEventListener('pointerdown', e => { if (!$('ov').hidden) return; e.preventDefault(); drop(); });
+stage.addEventListener('touchend', e => e.preventDefault(), { passive: false });
+addEventListener('dblclick', e => e.preventDefault());
 addEventListener('keydown', e => { if ((e.code === 'Space' || e.key === 'Enter') && $('ov').hidden && G.state === 'play') { e.preventDefault(); drop(); } });
 
 // drawing
