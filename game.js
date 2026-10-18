@@ -115,6 +115,7 @@ function draw(t) {
   if (G.combo >= 2 && G.state === 'play') { cx.font = `600 ${14 * S}px "Geist Mono",monospace`; cx.textAlign = 'center'; cx.fillStyle = '#39f688'; cx.fillText(`COMBO x${G.combo} 🔥`, W / 2, 96 * S); }
 }
 reset(); requestAnimationFrame(frame);
+if (new URLSearchParams(location.search).has('debug')) window.__G = G;
 
 // ---------- entry / API ----------
 const me = JSON.parse(localStorage.getItem('slasado.me') || '{}');
@@ -171,7 +172,7 @@ async function loadBoard() { try { const d = await fetch('/api/leaderboard', { c
 function renderBoard(d) {
   $('players').textContent = d.players ? `${d.players} JUGADOR${d.players > 1 ? 'ES' : ''}` : '';
   $('lb').innerHTML = d.top.length ? d.top.map((r, i) => `<li class="${r.handle === me.handle ? 'me' : ''}"><span class="pos">${i + 1}</span>
-    <img src="https://unavatar.io/x/${encodeURIComponent(r.handle)}?fallback=false" alt="" loading="lazy" width="36" height="36" onerror="this.outerHTML='<span class=ph>${esc(r.name[0] || '?').toUpperCase()}</span>'">
+    <img src="https://unavatar.io/x/${encodeURIComponent(r.handle)}" alt="" loading="lazy" width="36" height="36" onerror="this.outerHTML='<span class=ph>${esc(r.name[0] || '?').toUpperCase()}</span>'">
     <span class="who"><b>${esc(r.name)}</b><small>@${esc(r.handle)}</small></span><span class="pts">${r.score}</span></li>`).join('')
     : '<li class="empty">Todavía nadie apiló un chori. ¡Estrenalo!</li>';
   banner(d);
