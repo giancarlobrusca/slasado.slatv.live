@@ -54,7 +54,7 @@ h2{margin:0;font-size:22px;letter-spacing:-.03em}
 .at b{padding-left:12px;color:rgba(234,255,243,.5);font-weight:500}.at input{margin:0;border:0;background:none;padding-left:4px}
 .err{color:#ff8b7a;font-size:14px;min-height:0;margin:10px 0 0}.err:empty{display:none}
 .small{font-size:13px;color:rgba(234,255,243,.55);margin:10px 0 0;text-align:center}.small:empty{display:none}
-.link{all:unset;display:block;margin:10px auto 0;font-size:13px;color:rgba(234,255,243,.6);text-decoration:underline;cursor:pointer}
+.link{all:unset;display:block;margin:4px auto 0;padding:10px 14px;font-size:13px;color:rgba(234,255,243,.6);text-decoration:underline;cursor:pointer}
 .res{text-align:center}.res .big{font:600 64px "Geist Mono",monospace;color:#fff;margin:4px 0}.res p{margin:6px 0;color:rgba(234,255,243,.75)}
 .how{margin:12px 2px 0;font-size:14px;line-height:1.5;color:rgba(234,255,243,.65)}
 .lb{list-style:none;margin:0;padding:0}
