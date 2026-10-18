@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020c08">
+<title>SLASADO · SLA en San Francisco</title>
+<meta name="description" content="El gran asado argentino que cierra la visita de SLA por San Francisco. Jugá al Choripán Stack y ganate una remera de SLA.">
+<meta property="og:title" content="SLASADO · Choripán Stack">
+<meta property="og:description" content="El gran asado argentino de SLA en San Francisco. Apilá choripanes y ganate la remera de SLA.">
+<meta property="og:image" content="https://slasado.slatv.live/assets/cover.jpg">
+<meta property="og:url" content="https://slasado.slatv.live/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@slatv_">
+<link rel="icon" href="assets/sla-logo.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="embers" aria-hidden="true"></div>
+
+<header class="hero">
+  <img class="cover" src="assets/cover.jpg" alt="El equipo de SLA haciendo un asado frente al Golden Gate" width="1122" height="1402">
+  <div class="shade"></div>
+  <div class="hcontent">
+    <img class="logo" src="assets/sla-logo.svg" alt="SLA" width="84" height="26">
+    <p class="kicker mono"><i></i>EN VIVO · SAN FRANCISCO</p>
+    <h1>SLASADO</h1>
+    <p class="lede">Hacemos un gran asado argentino para cerrar la visita de SLA por San Francisco en la casa del súper host <b>Ale Vizio</b>.</p>
+    <div class="meta mono"><span>SÁB 17 OCT</span><span>18–22 H PT</span><span>SF, CA</span></div>
+    <div class="ctas"><a class="btn primary" href="#juego">Jugar al Choripán Stack</a><a class="btn" href="https://luma.com/1szy0zes" target="_blank" rel="noopener">Luma ↗</a></div>
+  </div>
+</header>
+
+<main>
+  <div id="banner" class="banner" hidden></div>
+
+  <section class="prize">
+    <div class="tee" aria-hidden="true">👕</div>
+    <div>
+      <p class="mono eyebrow">PREMIO</p>
+      <h2>Remera de SLA</h2>
+      <p>Para el #1 del ranking cuando cierre el concurso a las <b>21:30 PT</b>. Tenés <b>3 intentos</b> por usuario de X y cuenta tu mejor puntaje.</p>
+    </div>
+    <div class="count mono" id="count" aria-live="polite">--:--:--</div>
+  </section>
+
+  <section id="juego" class="game">
+    <div class="ghead"><h2>Choripán Stack</h2><span class="mono" id="hud">TOCÁ PARA SOLTAR</span></div>
+    <div class="stage" id="stage">
+      <canvas id="cv" aria-label="Juego Choripán Stack: tocá para soltar cada choripán y apilalos lo más alto posible"></canvas>
+      <div class="score mono" id="score">0</div>
+      <div class="overlay" id="ov">
+        <form id="reg" class="panel" autocomplete="on">
+          <p class="mono eyebrow">ANTES DE JUGAR</p>
+          <h3>¿Quién sos?</h3>
+          <label>Nombre<input id="name" name="name" maxlength="24" required placeholder="Ej: Ale Vizio" autocomplete="name"></label>
+          <label>Usuario de X<span class="at"><b>@</b><input id="handle" name="handle" maxlength="20" required placeholder="slatv_" autocapitalize="off" autocorrect="off" spellcheck="false"></span></label>
+          <button class="btn primary big" id="play" type="submit">Jugar</button>
+          <p class="err" id="err" role="alert"></p>
+          <p class="small" id="left"></p>
+          <button class="link" type="button" id="practice">Practicar sin sumar</button>
+        </form>
+      </div>
+    </div>
+    <p class="how">Los choris van y vienen: <b>tocá</b> para soltarlos. Lo que sobresale se corta; si errás del todo, se cae. Clavalo perfecto para combo 🔥</p>
+  </section>
+
+  <section class="board">
+    <div class="ghead"><h2>Ranking en vivo</h2><span class="mono" id="players"></span></div>
+    <ol id="lb" class="lb"><li class="empty">Todavía nadie apiló un chori. ¡Estrenalo!</li></ol>
+  </section>
+
+  <section class="grill">
+    <h2>Hoy en la parrilla</h2>
+    <ul>
+      <li><span>🌭</span>Choripán con chimi</li>
+      <li><span>🥩</span>Tira de asado</li>
+      <li><span>🧀</span>Provoleta</li>
+      <li><span>🌶️</span>Chimichurri de la casa</li>
+      <li><span>🍷</span>Malbec</li>
+      <li><span>🎧</span>DJ set en vivo</li>
+    </ul>
+  </section>
+
+  <footer>
+    <a class="net" href="https://network.slatv.live" target="_blank" rel="noopener"><span class="mono">✦ THE SLA NETWORK</span><b>Mirá la constelación de invitados de SLA →</b></a>
+    <div class="soc"><a href="https://x.com/slatv_" target="_blank" rel="noopener">X @slatv_</a><a href="https://www.youtube.com/@SLA-TEVE" target="_blank" rel="noopener">YouTube</a><a href="https://slatv.live" target="_blank" rel="noopener">slatv.live</a></div>
+    <img src="assets/sla-logo.svg" alt="SLA" width="64" height="20" class="flogo">
+  </footer>
+</main>
+<script src="game.js"></script>
+</body>
+</html>

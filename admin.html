@@ -1,0 +1,20 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>SLASADO · Admin</title><link rel="stylesheet" href="style.css">
+<style>body{padding:3vw}h1{font-size:clamp(40px,7vw,96px);margin:0}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+#win{margin:2vw 0;padding:2vw;border-radius:24px;border:1px solid rgba(255,181,71,.4);background:linear-gradient(135deg,rgba(255,122,26,.2),rgba(57,246,136,.12));font-size:clamp(22px,3vw,44px)}
+table{width:100%;border-collapse:collapse;font-size:clamp(16px,1.8vw,28px)}td,th{padding:.6em .5em;border-bottom:1px solid rgba(234,255,243,.1);text-align:left}th{font:500 .6em "Geist Mono",monospace;letter-spacing:.12em;color:rgba(234,255,243,.5)}
+td.n{font-family:"Geist Mono",monospace;color:var(--acid);font-weight:600}tr:first-child td{color:#ffd166}#cd{font:600 clamp(28px,4vw,60px) "Geist Mono",monospace;color:var(--ember2)}</style></head>
+<body><div class="top"><div><img src="assets/sla-logo.svg" alt="SLA" height="28"><h1>SLASADO · Ranking</h1></div><div id="cd"></div></div>
+<div id="win">Cargando…</div><table><thead><tr><th>#</th><th>NOMBRE</th><th>X</th><th>MEJOR</th><th>INTENTOS</th><th>HORA (PT)</th></tr></thead><tbody id="tb"></tbody></table>
+<p class="mono" id="st" style="color:rgba(234,255,243,.45);margin-top:2vw"></p>
+<script>
+const key=new URLSearchParams(location.search).get('key'),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pt=ms=>new Date(ms).toLocaleTimeString('es-AR',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+async function load(){const r=await fetch('/api/admin?key='+encodeURIComponent(key||''),{cache:'no-store'});if(!r.ok){document.getElementById('win').textContent='Clave inválida';return}
+const d=await r.json(),w=d.ranked[0];
+document.getElementById('win').innerHTML=w?`${d.closed?'🏆 Ganador':'👑 Va ganando'}: <b>${esc(w.name)}</b> (@${esc(w.handle)}) · <b>${w.score}</b> choris`:'Todavía no hay puntajes';
+document.getElementById('tb').innerHTML=d.ranked.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.name)}</td><td>@${esc(r.handle)}</td><td class="n">${r.score}</td><td>${r.started}/3</td><td>${pt(r.at)}</td></tr>`).join('');
+document.getElementById('st').textContent=`${d.ranked.length} jugadores · ${d.submissions} puntajes · ${Object.keys(d.started).length} usuarios con intentos · actualizado ${pt(d.now)} PT`;
+const ms=d.closeAt-Date.now();document.getElementById('cd').textContent=ms>0?`Cierra en ${Math.floor(ms/6e4)}:${String(Math.floor(ms/1e3)%60).padStart(2,'0')}`:'CERRADO';}
+load();setInterval(load,5000);
+</script></body></html>
